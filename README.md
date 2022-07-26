@@ -1,7 +1,5 @@
-# Instructions from G. Sterbini from https://github.com/xsuite/example_DA_study/tree/release/v0.1.0 and IBS scripts from F. Antoniou
-# Compatible with tree_maker v0.1.0, submission to htcondor, lsf and slurm supported.
-
-# Some simple steps
+### Instructions from G. Sterbini from https://github.com/xsuite/example_DA_study/tree/release/v0.1.0 and IBS scripts from F. Antoniou
+### Compatible with tree_maker v0.1.0, submission to htcondor, lsf and slurm supported.
 
 ### Installation instructions
 
