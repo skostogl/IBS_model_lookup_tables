@@ -1,3 +1,6 @@
+# Instructions from G. Sterbini from https://github.com/xsuite/example_DA_study/tree/release/v0.1.0 and IBS scripts from F. Antoniou
+# Compatible with tree_maker v0.1.0, submission to htcondor, lsf and slurm supported.
+
 # Some simple steps
 
 ### Installation instructions
@@ -35,52 +38,19 @@ Host bologna
 
 As you can see, `bologna` (hpc-201-11-01-a) host is passing via the `bastion` (bastion.cnaf.infn.it) connection.
 
-### Activate the environment
-I sugget sto open a `tmux` terminal and 
 
-```bash
-source /home/HPC/sterbini/py38/bin/activate
-```
-then move where you want to start lauch this DA study and make a clone of this repository
+# Documentation of master study
 
-```
-git clone https://github.com/sterbini/DA_study_example.git
-cd DA_study_example
-```
+000_make_sequence_tree.py: creates tree for all sequences from Run 3 repo. Run 002_chronjob with tree_maker_sequences.json
 
-### Tree creation
-With the command
-```bash
-python 001_make_folders.py
-```
-one creates the `study_000` tree in the `DA_study_example`.
-It consists of a 21x21 folders (a tune scan using the pymask in `000_machine_model`).
-Each folders has 15 subfolders (each is launching an `xtrack` jobs of 42 or 43 particles, in total the particles are 640).
+001_make_ibs_tree.py: creates tree for IBS scan. At the moment, 50 points of the scan per job. Run 002_chronjob with tree_maker.json
 
-All the details are in the code `001_make_folders.py`.
+002_chronjob.py: Submits jobs in lsf, slurm or htcondor
 
-### Launching the simulation
+003_save_lookup_table.py: reads output of all jobs and saves lookup table
 
-One can launch the first generation of of jobs (441 pymasks) by 
-```
-python 002_chronjob.py
-```
-And you can repeat the same command to advance in the tree genealogy and launch the tracking (the code knows when is ready to launch the second generation).
-In fact this could be implemented in a chron job.
+004_interpolate.py: performs interpolation and even needed saves interpolation in pickles (I have not found a better way at the moment)
 
-One can monitor the status of the jobs by
-```
-bjobs -sum -u user_name 
-```
-
-
-
-
-
-
-
-
-
-
-
+004a_sanity_check.py: compares emittance evolution derived from lookup tables with MADX 
+results (in "sanity_checks" folder)
 
