@@ -1,0 +1,35 @@
+'root':
+  setup_env_script: '/home/HPC/skostogl/workspace_Jul22/IBS_model_new/miniconda/bin/activate'
+  generations:
+    1: # Make the particle distribution
+      job_folder: 'master_jobs/001_prepare_ibs_job'
+      job_executable: run_ibs.py # has to be a python file
+      files_to_clone: # relative to the template folder
+        - clean_it.sh
+      run_on: 'slurm'
+  use_yaml_children: false
+  # first generation
+  children:
+    'IBS_scan_6p8TeV_12MV_test/000':
+      En: 
+        - 6800.0
+        - 6800.0
+      V0max: 
+        - 12
+        - 12
+      blns:
+        - 0.85
+        - 0.85
+      bunch_intensity:
+        - 0.1e11
+        - 1.2e11
+      emit_x:
+        - 1.0
+        - 1.0
+      emit_y:
+        - 1.0
+        - 1.0
+      sequence:
+        - /home/HPC/skostogl/workspace_Jul22/IBS_model_new/master_study/sequences/Run3_beta0.6_nrj7000.0_phi160_VRF12.0_ondisp1.seq
+        - /home/HPC/skostogl/workspace_Jul22/IBS_model_new/master_study/sequences/Run3_beta0.6_nrj7000.0_phi160_VRF12.0_ondisp1.seq
+

@@ -1,0 +1,51 @@
+# Activate/Deactivate flags
+flag_IBS: 1                 # If 1 calculate with IBS
+flag_SR: 1                  # If 1 calculate with SR
+flag_BOff: 0                # If 1 calculate with Boff
+flag_extraGrowth: 0         # If 1 we consider extra growth defined with egrx_extra/egry_extra
+
+# Time steps and duration
+tflattopconst:              # Duration in minutes 
+- 300
+- 300
+dt:                          # Time step in seconds
+- 60
+- 60
+sequence:
+- /home/HPC/antoniou/IBS_LHC_2022/templates/sequences/Run3_beta0.6_nrj7000.0_phi160_VRF12.0_ondisp1.seq
+- /home/HPC/antoniou/IBS_LHC_2022/templates/sequences/Run3_beta0.6_nrj7000.0_phi160_VRF12.0_ondisp1.seq
+En:                          # energy in GeV 
+- 6800.0
+- 6800.0
+V0max:                       # RF voltage in GV
+- 0.012
+- 0.012
+blns:                        # bunch length in ns
+- 1.1
+- 0.9
+bl_lev: 0.0                  # Keep bunch length ct (at bl_lev_max) when < bl_lev
+bl_lev_max: 0.0
+k:                           # Nb persentage
+- 108
+- 120
+jj:                          # ex persentage
+- 150
+- 100
+jjy:                         # ey persentage
+- 130
+- 180
+betastar: 0.64               # only used for lumi calculation
+phi: 500.e-6                 # full crossing angle
+sigmaBOff: 81.e-31           # inelastic cross section for Boff
+nIPs: 2                      # used for Boff computations
+nb: 1                        # only used for lumi calculation
+
+# Extra blowup if flag_extraGrowth=1
+egrx_extra: 0.05             # dt*0.05/3600*1e-6, 0.05 um/h extra emittance blow up in horizontal
+egry_extra: 0.05             # dt*0.05/3600*1e-6, 0.05 um/h extra emittance blow up in vertical
+
+# Save results
+tfs_or_parquet: parquet
+save_to: IBS_long_output.parquet
+log_file: log.json
+parent: .

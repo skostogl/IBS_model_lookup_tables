@@ -1,0 +1,31 @@
+# Activate/Deactivate flags
+flag_IBS: 1                 # If 1 calculate with IBS
+flag_SR: 1                  # If 1 calculate with SR
+
+# Sequence to load
+sequence: 
+- /home/HPC/antoniou/IBS_LHC_2022/templates/sequences/Run3_beta0.6_nrj7000.0_phi160_VRF12.0_ondisp1.seq
+En:                          # energy in GeV
+- '6800.0'
+V0max:                       # RF voltage in MV
+- '12'
+blns:                        # bunch length in ns
+- '0.85'
+bl_lev: 0.0                  # Keep bunch length ct (at bl_lev_max) when < bl_lev
+bl_lev_max: 0.0
+bunch_intensity:             # Nb
+- '0.1e11'
+emit_x:                      # ex in um
+- '1.0'
+emit_y:                      # ey in um
+- '1.0'
+betastar: 0.64               # only used for lumi calculation
+phi: 500.e-6                 # full crossing angle
+sigmaBOff: 81.e-31           # inelastic cross section for Boff
+nIPs: 2                      # used for Boff computations
+nb: 1                        # only used for lumi calculation
+
+# Save results
+save_to: ./IBS_output.parquet
+log_file: ./log.json
+parent: ./

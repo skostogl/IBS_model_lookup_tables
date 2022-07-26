@@ -1,0 +1,24 @@
+'root':
+  setup_env_script: '/home/HPC/skostogl/workspace_Jul22/IBS_model_new/miniconda/bin/activate'
+  generations:
+    1: # Make the particle distribution
+      job_folder: 'master_jobs/000_machine_model'
+      job_executable: 000_pymask.py  # has to be a python file
+      files_to_clone:
+        - optics_specific_tools.py
+      run_on: 'slurm'
+  use_yaml_children: false
+  # first generation
+  children:
+   'create_sequences/Run3_beta1.2_nrj6800.0_phi160_VRF10.0_ondisp1':
+     optics_file: '/afs/cern.ch/eng/lhc/optics/runIII/RunIII_dev/2022_V5/PROTON/opticsfile.23'
+     vrf_total: 12.
+     beam_energy_tot: 6800.0
+     beam_npart: 180000000000.0
+     save_to: Run3_beta1.2_nrj7000.0_phi160_VRF12.0_ondisp1.seq
+   'create_sequences/Run3_beta0.2_nrj6800.0_phi160_VRF10.0_ondisp1':
+     optics_file: '/afs/cern.ch/eng/lhc/optics/runIII/RunIII_dev/2022_V5/PROTON/opticsfile.48'
+     vrf_total: 12.
+     beam_energy_tot: 6800.0
+     beam_npart: 180000000000.0
+     save_to: Run3_beta0.2_nrj7000.0_phi160_VRF12.0_ondisp1.seq
